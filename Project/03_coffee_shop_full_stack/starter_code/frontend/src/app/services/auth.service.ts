@@ -20,6 +20,15 @@ export class AuthService {
 
   constructor() { }
 
+  build_logout_link() {
+    let link = 'https://';
+    link += this.url + '.auth0.com';
+    link += '/v2/logout?';
+    link += 'client_id=' + this.clientId + '&';
+    link += 'returnTo=http://localhost:4200/tabs/user-page';
+    return link;
+  }
+
   build_login_link(callbackPath = '') {
     let link = 'https://';
     link += this.url + '.auth0.com';
@@ -75,6 +84,8 @@ export class AuthService {
   }
 
   can(permission: string) {
-    return this.payload && this.payload.permissions && this.payload.permissions.length && this.payload.permissions.indexOf(permission) >= 0;
+    return this.payload && this.payload.permissions 
+    && this.payload.permissions.length 
+    && this.payload.permissions.indexOf(permission) >= 0;
   }
 }
